@@ -22,6 +22,12 @@ function getToioConnection(){
   return connectedCube;
 }
 
+function getToioConnection2(){
+  connectedCube2 = P5tCube.connectNewP5tCube();
+  console.log(connectedCube2);
+  return connectedCube2;
+}
+
 async function checkKey(e){
   e = e || window.event;
 
@@ -29,6 +35,12 @@ async function checkKey(e){
     console.log("Waiting for the connection to be established");
     connectedCube = await getToioConnection();
     connectedCube.turnLightOnRGB(0,255,0,2000);
+  }
+
+  if(e.keyCode == '70'){
+    console.log("Waiting for the connection to be established");
+    connectedCube2 = await getToioConnection2();
+    connectedCube2.turnLightOnRGB(255,0,0,2000);
   }
   else if(e.keyCode == '38'){
     //up arrow
@@ -44,7 +56,7 @@ async function checkKey(e){
   }
   else if(e.keyCode =='40'){
     //down arrow
-    connectedCube.move(-8,-8,500)
+    connectedCube.move(-8,-8,500);
     
 
   }
@@ -70,12 +82,40 @@ async function checkKey(e){
   connectedCube.rotate(8,95);
 
   }
+  else if (e.keyCode == '87'){
+        //w key
+        connectedCube2.move(8,8,500);
+  }
+  else if (e.keyCode == '83'){
+        //s key 
+        connectedCube2.move(-8,-8,500);
+  }
+  else if (e.keyCode == '65'){
+        //a key
+        connectedCube2.move(-8,8,95);
+  }
+  else if (e.keyCode == '68')
+  {
+        //d key 
+        connectedCube2.rotate(8,95);
+  }
 
-  else if(e.keyCode == '65'){
+  else if (e.keyCode == '80'){
+        var xPos = connectedCube.sensorX;
+        var yPos = connectedCube.sensorY;
+        connectedCube2.moveTo({
+  x: xPos,
+  y: yPos,
+  angle: -Math.PI / 2,
+  angleType: 0
+}, 80);
+  }
+
+ /* else if(e.keyCode == '65'){
     connectedCube.move(10,10,2000);
     connectedCube.rotate(-8,95);
     connectedCube.move(8,8,500)
 
-  }
+  }*/
   
 }
