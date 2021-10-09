@@ -22,7 +22,6 @@ function turnLightOnRGB(r,g,b,duration) {
   return new Promise((resolve, reject) => {
       setTimeout(() => {
         connectedCube.turnLightOnRGB(r,g,b,duration);
-        connectedCube.playSE(6);
         resolve(true)
       }, duration)
   })
